@@ -1,12 +1,13 @@
 const catchAsync = require('../utils/catchAsync');
+const {contractService} = require("../services");
 
-const getContractById = catchAsync(async (req, res, next) => {
+const getContractByIdForUser = catchAsync(async (req, res, next) => {
     try {
-        const {Contract} = req.app.get('models')
-        const {id} = req.params
-        const contract = await Contract.findOne({where: {id}})
-        if(!contract) return res.status(404).end()
-        res.json(contract)
+        const {profile} = req;
+        const contractDetails = await contractService.getContractByIdForUser(
+            req.params.id,profile
+        );
+        res.json(contractDetails)
         return next();
     } catch (e) {
         console.log(`Error in fetching contract details. Error: `, e);
@@ -22,6 +23,6 @@ const getAllNonTerminatedContractsForUser = catchAsync(async (req, res, next) =>
 });
 
 module.exports = {
-    getContractById,
+    getContractByIdForUser,
     getAllNonTerminatedContractsForUser
 };

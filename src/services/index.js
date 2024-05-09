@@ -1,0 +1,1 @@
+module.exports.contractService = require('./contracts.service');
