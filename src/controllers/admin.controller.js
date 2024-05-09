@@ -11,6 +11,8 @@ const getMostPayingProfession = catchAsync(async (req, res, next) => {
         return next();
     } catch (e) {
         console.log(`Error in fetching most paying profession details. Error: `, e);
+        res.status(500)
+            .json({ Error: 'Error in fetching most paying profession details. Error: ' + e.message});
     }
 });
 
@@ -25,6 +27,8 @@ const getMostPayingClients = catchAsync(async (req, res, next) => {
         return next();
     } catch (e) {
         console.log(`Error in fetching most paying client details. Error: `, e);
+        res.status(500)
+            .json({ Error: 'Error in fetching most paying client details. Error: ' + e.message});
     }
 });
 

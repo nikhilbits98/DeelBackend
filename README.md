@@ -96,3 +96,11 @@ It would be great for example if you'd write some unit test / simple frontend de
 When you have finished the assignment, zip your repo (make sure to include .git folder) and send us the zip.
 
 Thank you and good luck! 🙏
+
+## TODO:
+1. Better Exception Handling with proper HTTP status codes.
+2. Using distributed locking for concurrency control i.e. Redis or Async-lock
+3. Custom logger instead of console logging.
+4. JOIs for validating API schemas -> Security.
+5. Some basic authentication middleware
+6. node-cls for storing profile specific to each request. Can also be extended to store transaction of current request.

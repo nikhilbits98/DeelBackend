@@ -11,6 +11,8 @@ const getContractById = catchAsync(async (req, res, next) => {
         return next();
     } catch (e) {
         console.log(`Error in fetching contract details by id. Error: `, e);
+        res.status(500)
+            .json({ Error: 'Error in fetching contract details by id. Error: ' + e.message});
     }
 });
 
@@ -24,6 +26,8 @@ const getAllNonTerminatedContracts = catchAsync(async (req, res, next) => {
         return next();
     } catch (e) {
         console.log(`Error in fetching all active contract details. Error: `, e);
+        res.status(500)
+            .json({ Error: 'Error in fetching all active contract details. Error: ' + e.message});
     }
 });
 

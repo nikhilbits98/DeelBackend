@@ -9,6 +9,8 @@ const getUnpaidJobs = catchAsync(async (req, res, next) => {
         return next();
     } catch (e) {
         console.log(`Error in fetching Unpaid Job details. Error: `, e);
+        res.status(500)
+            .json({ Error: 'Error in fetching Unpaid Job details. Error: ' + e.message});
     }
 });
 
@@ -23,6 +25,8 @@ const payForJob = catchAsync(async (req, res, next) => {
         return next();
     } catch (e) {
         console.log(`Error in making payment for a job. Error: `, e);
+        res.status(500)
+            .json({ Error: 'Error in making payment for a job. Error: ' + e.message});
     }
 });
 
