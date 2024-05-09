@@ -19,7 +19,7 @@ const getProfileByIdWithTransaction = async(profileId, txn) => {
 }
 
 const addBalanceToProfile = async (profileId, type, amount, txn) => {
-    await Profile.update({ balance: sequelize.literal(`balance - ${amount}`),}, {
+    await Profile.update({ balance: sequelize.literal(`balance + ${amount}`),}, {
         where: {
             id: profileId,
             type: type
@@ -29,7 +29,7 @@ const addBalanceToProfile = async (profileId, type, amount, txn) => {
 }
 
 const deductBalanceFromProfile = async (profileId, type, amount, txn) => {
-    await Profile.update({ balance: sequelize.literal(`balance + ${amount}`),}, {
+    await Profile.update({ balance: sequelize.literal(`balance - ${amount}`),}, {
         where: {
             id: profileId,
             type: type
