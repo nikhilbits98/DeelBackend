@@ -1,5 +1,4 @@
 const { Profile, sequelize} = require("../model");
-const {profileRepository} = require("./index");
 
 const getProfileById = async(profileId) => {
     return await Profile.findOne({
