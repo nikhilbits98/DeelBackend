@@ -9,10 +9,19 @@ const getContractById = catchAsync(async (req, res, next) => {
         res.json(contract)
         return next();
     } catch (e) {
-        console.log(`Error in fetching details for inventory. Error: `, e);
+        console.log(`Error in fetching contract details. Error: `, e);
+    }
+});
+
+const getAllNonTerminatedContractsForUser = catchAsync(async (req, res, next) => {
+    try {
+        return next();
+    } catch (e) {
+        console.log(`Error in fetching contract details. Error: `, e);
     }
 });
 
 module.exports = {
     getContractById,
+    getAllNonTerminatedContractsForUser
 };
