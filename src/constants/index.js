@@ -1,0 +1,1 @@
+module.exports.contractStatusConstant = require('./contractStatus.constant');
