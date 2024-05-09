@@ -1,0 +1,1 @@
+module.exports.contractController = require('./contracts.controller');
