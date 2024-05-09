@@ -1,10 +1,10 @@
 const catchAsync = require('../utils/catchAsync');
 const {contractService} = require("../services");
 
-const getContractByIdForUser = catchAsync(async (req, res, next) => {
+const getContractById = catchAsync(async (req, res, next) => {
     try {
         const {profile} = req;
-        const contractDetails = await contractService.getContractByIdForUser(
+        const contractDetails = await contractService.getContractById(
             req.params.id, profile.id
         );
         res.json(contractDetails)
@@ -14,13 +14,13 @@ const getContractByIdForUser = catchAsync(async (req, res, next) => {
     }
 });
 
-const getAllNonTerminatedContractsForUser = catchAsync(async (req, res, next) => {
+const getAllNonTerminatedContracts = catchAsync(async (req, res, next) => {
     try {
         const {profile} = req;
-        const allActiveContracts = await contractService.getAllNonTerminatedContractsForUser(
+        const allNonTerminatedContracts = await contractService.getAllNonTerminatedContracts(
             profile.id
         );
-        res.json(allActiveContracts)
+        res.json(allNonTerminatedContracts)
         return next();
     } catch (e) {
         console.log(`Error in fetching all active contract details. Error: `, e);
@@ -28,6 +28,6 @@ const getAllNonTerminatedContractsForUser = catchAsync(async (req, res, next) =>
 });
 
 module.exports = {
-    getContractByIdForUser,
-    getAllNonTerminatedContractsForUser
+    getContractById,
+    getAllNonTerminatedContracts
 };

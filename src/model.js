@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const {contractStatusConstant} = require("./constants");
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
@@ -41,7 +42,7 @@ Contract.init(
       allowNull: false
     },
     status:{
-      type: Sequelize.ENUM('new','in_progress','terminated')
+      type: Sequelize.ENUM(...contractStatusConstant.ALL_CONTRACT_STATUS_LIST)
     }
   },
   {
