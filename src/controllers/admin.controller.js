@@ -16,6 +16,12 @@ const getMostPayingProfession = catchAsync(async (req, res, next) => {
 
 const getMostPayingClients = catchAsync(async (req, res, next) => {
     try {
+        const mostPayingClient = await adminService.getMostPayingClient(
+            req.query.start,
+            req.query.end,
+            req.query.limit || 2
+        );
+        res.json(mostPayingClient)
         return next();
     } catch (e) {
         console.log(`Error in fetching most paying client details. Error: `, e);
