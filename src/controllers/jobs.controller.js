@@ -16,7 +16,8 @@ const payForJob = catchAsync(async (req, res, next) => {
     try {
         const {profile} = req;
         const contractDetails = await jobService.payForJob(
-            req.params.jobId, profile.id
+            req.params.jobId,
+            profile.id
         );
         res.json(contractDetails)
         return next();

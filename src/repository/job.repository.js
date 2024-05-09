@@ -92,8 +92,45 @@ const getMostPayingClients = async (startDate, endDate, limit) => {
     });
 }
 
+const getJobByIdWithTransaction = async(jobId, profileId, txn) => {
+    return await Job.findOne({
+        where: {
+            id: jobId
+        },
+        include: [
+            {
+                model: Contract,
+                required: true,
+
+                include: {
+                    model: Profile,
+                    as: 'Client',
+                    where: {
+                        id: profileId
+                    }
+                }
+            }
+        ],
+        transaction: txn
+    });
+}
+
+const markJobAsPaid = async (jobId, txn) => {
+    await Job.update({ paid: true, paymentDate: new Date() }, {
+        where: {
+            id: jobId,
+            paid: {
+                [Op.not]: true
+            }
+        },
+        transaction: txn
+    });
+}
+
 module.exports = {
     getUnpaidJobsByProfileIdAndContractStatus,
     getMostPayingProfession,
-    getMostPayingClients
+    getMostPayingClients,
+    getJobByIdWithTransaction,
+    markJobAsPaid
 }
